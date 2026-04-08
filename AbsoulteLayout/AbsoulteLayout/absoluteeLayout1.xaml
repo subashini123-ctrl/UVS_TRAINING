@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AbsoulteLayout.absoluteeLayout1"
+             Title="absoluteeLayout1">
+
+    <AbsoluteLayout>
+        <Label 
+            Text="Welcome the  login"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            AbsoluteLayout.LayoutBounds="100,200,200,300" 
+              />
+        <Button
+            Text="click1"
+            HeightRequest="50"
+            WidthRequest="100"
+         />
+        <Button
+            Text="click2"
+            HeightRequest="50"
+            WidthRequest="100"
+         />
+        <Button
+            Text="click3"
+            HeightRequest="50"
+            WidthRequest="100"
+        />
+        <Button
+            Text="click4"
+            HeightRequest="50"
+            WidthRequest="100"
+         />
+    </AbsoluteLayout>
+</ContentPage>
