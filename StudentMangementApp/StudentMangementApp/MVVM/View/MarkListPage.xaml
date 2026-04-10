@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentMangementApp.MVVM.Viiew.MarkListPage"
+             Title="MarkListPage">
+    <CollectionView ItemsSource="{Binding Students}">
+        <CollectionView.ItemTemplate>
+
+            <DataTemplate>
+                <Border Margin="10" Padding="15">
+
+                    <StackLayout Spacing="10">
+
+                        
+                        <Label Text="STUDENT MARKSHEET"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"
+                               FontSize="18"/>
+
+                        
+                        <Label Text="{Binding Name}"
+                               FontAttributes="Bold"/>
+
+                        
+                        <Grid ColumnDefinitions="*,*"
+                              RowDefinitions="Auto,Auto,Auto,Auto">
+
+                            
+                            <Label Text="Subject" FontAttributes="Bold"/>
+                            <Label Text="Marks" Grid.Column="1" FontAttributes="Bold"/>
+
+                            
+                            <Label Text="Mathematics" Grid.Row="1"/>
+                            <Label Text="{Binding Mathematics}" Grid.Row="1" Grid.Column="1"/>
+
+                            <Label Text="Physics" Grid.Row="2"/>
+                            <Label Text="{Binding Physics}" Grid.Row="2" Grid.Column="1"/>
+
+                            <Label Text="Chemistry" Grid.Row="3"/>
+                            <Label Text="{Binding Chemistry}" Grid.Row="3" Grid.Column="1"/>
+
+                        </Grid>
+
+                       
+                        <Label Text="{Binding Total, StringFormat='Total: {0}'}"
+                               FontAttributes="Bold"/>
+
+                        
+                        <Label Text="{Binding Percentage, StringFormat='Percentage: {0:F2}%'}"/>
+
+                        
+                        <Label Text="{Binding Result}"
+                               TextColor="Green"
+                               FontAttributes="Bold"/>
+
+                    </StackLayout>
+
+                </Border>
+            </DataTemplate>
+
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
