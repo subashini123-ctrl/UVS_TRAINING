@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PageNavigation.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PageNavigation"
+    xmlns:Pages="clr-namespace:PageNavigation"
+    Title="PageNavigation">
+
+    <FlyoutItem Title="home">
+
+        <ShellContent
+        Title="Page1"
+        ContentTemplate="{DataTemplate Pages : Page1}"
+     />
+        <ShellContent
+        Title="Page2"
+        ContentTemplate="{DataTemplate Pages : Page2}"/>
+    </FlyoutItem>
+    
+    <ShellContent
+        Title="Page3"
+        ContentTemplate="{DataTemplate Pages : Page3}"/>
+    
+</Shell>

@@ -12,8 +12,10 @@ namespace StudentManagementApplication.MVVM.ViewModel
         {
             Students = new ObservableCollection<Student>
         {
-            new Student { Name="Arun", RegisterNumber="101", Department="CSE", Tamil=80, English=75, Mathematics=90 },
-            new Student { Name="Kumar", RegisterNumber="102", Department="IT", Tamil=70, English=65, Mathematics=85 }
+            new Student { Name="Arun", RegisterNumber="101", Department="CSE", Tamil=80, English=75, Mathematics=90 , Science=45
+            },
+            new Student { Name="Kumar", RegisterNumber="102", Department="IT", Tamil=70, English=65, Mathematics=85 , Science=40
+            }
         };
         }
     }

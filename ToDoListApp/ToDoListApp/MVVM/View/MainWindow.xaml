@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Converted to .NET MAUI XAML: use ContentPage and MAUI controls -->
+<ContentPage x:Name="ThisPage"
+             x:Class="ToDoListApp.MVVM.View.MainWindow_Bad"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ToDoListApp.MVVM.ViewModel"
+             Title="My To-Do List"
+             BackgroundColor="#1E1E2E">
+    <!-- ViewModel connect -->
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="My To-Do List"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#CBA6F7" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Entry WidthRequest="270"
+                       Text="{Binding NewTaskTitle}"
+                       BackgroundColor="#313244"
+                       TextColor="#CDD6F4"
+                       FontSize="13" />
+                <Button Text="+ Add"
+                        Command="{Binding AddCommand}"
+                        WidthRequest="80"
+                        BackgroundColor="#A6E3A1"
+                        TextColor="#1E1E2E"
+                        FontAttributes="Bold" />
+            </HorizontalStackLayout>
+
+            <CollectionView ItemsSource="{Binding TodoItems}"
+                            BackgroundColor="#181825"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="30,*,65" Margin="4">
+                            <CheckBox IsChecked="{Binding IsCompleted}" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Title}"
+                                   FontSize="13"
+                                   TextColor="#CDD6F4"
+                                   VerticalTextAlignment="Center" />
+                            <Button Grid.Column="2"
+                                    Text="Delete"
+                                    BackgroundColor="#F38BA8"
+                                    TextColor="#1E1E2E"
+                                    FontSize="10"
+                                    Command="{Binding BindingContext.DeleteCommand, Source={x:Reference Name=ThisPage}}"
+                                    CommandParameter="{Binding}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

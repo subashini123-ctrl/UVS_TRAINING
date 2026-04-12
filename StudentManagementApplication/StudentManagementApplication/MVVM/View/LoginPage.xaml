@@ -2,36 +2,46 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentManagementApplication.MVVM.View.LoginPage"
-             Title="LoginPage">
+             Title="LoginPage"
+             BackgroundColor="Black">
 
-    <Border BackgroundColor="LightBlue">
+    <ScrollView>
 
-        <VerticalStackLayout Padding="30" Spacing="20">
+        <Border BackgroundColor="LightBlue">
 
-            <Label Text="Login Page"
-               FontSize="30"
-               HorizontalOptions="Center"
-               TextColor="Black"/>
+            <VerticalStackLayout Padding="30" Spacing="15">
 
-            <Entry Placeholder="Username"
+
+
+                <Label Text="Login Page"
+                           FontSize="30"
+                           HorizontalOptions="Center"
+                           TextColor="Black"
+                           Grid.Row="5"
+                           Grid.Column="4"
+                           />
+
+                <Entry Placeholder="Username"
                Text="{Binding Username}"
                PlaceholderColor="White"
                TextColor="Black"/>
 
-            <Entry Placeholder="Password"
+                <Entry Placeholder="Password"
                IsPassword="True"
                Text="{Binding Password}"
                PlaceholderColor="White"
                TextColor="Black"/>
 
-            <Button Text="Login"
+                <Button Text="Login"
                 Command="{Binding LoginCommand}" 
                 TextColor="White"
                 Background="Blue"
-                HeightRequest="100"
-                WidthRequest="150"/>
+                HeightRequest="50"
+                WidthRequest="100"/>
 
-        </VerticalStackLayout>
-    </Border>
-    
+            </VerticalStackLayout>
+
+        </Border>
+    </ScrollView>
+
 </ContentPage>
