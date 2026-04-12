@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoList.View.MainView"
+             xmlns:viewmodels="clr-namespace:ToDoList.ViewModel"
+             Title="MainView">
+    <ContentPage.BindingContext>
+        
+        <viewmodels:MainViewModel/>
+
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <!-- Title -->
+        <Label Text="My ToDoList App"
+               FontSize="25"
+               FontAttributes="Bold"
+               TextColor="Black"
+               HorizontalOptions="Center"/>
+
+        <!-- Add Task -->
+        <HorizontalStackLayout>
+            <Entry Placeholder="Enter task..."
+                   Text="{Binding NewTaskText}"
+                   HorizontalOptions="FillAndExpand"
+                   HeightRequest="50"
+                   WidthRequest="450"/>
+
+            <Button Text="Add"
+                    Command="{Binding AddTaskCommand}"
+                    BackgroundColor="Purple"
+                    TextColor="White"
+                    HeightRequest="50"
+                    WidthRequest="100"/>
+        </HorizontalStackLayout>
+
+        <!-- Task List -->
+        <CollectionView ItemsSource="{Binding Tasks}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5"
+                           CornerRadius="15"
+                           BackgroundColor="#F3E5F5">
+
+                        <Grid ColumnDefinitions="*,Auto,Auto">
+
+                            <!-- Task Title -->
+                            <Label Text="{Binding Title}"
+                                   FontSize="18"
+                                   VerticalOptions="Center">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding IsCompleted}"
+                                                 Value="True">
+                                        <Setter Property="TextDecorations"
+                                                Value="Strikethrough"/>
+                                        <Setter Property="TextColor"
+                                                Value="Gray"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+
+                            <!-- Complete Button -->
+                            <Button Text="✔"
+                                    Grid.Column="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ToggleTaskCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Green"
+                                    TextColor="White"/>
+
+                            <!-- Delete Button -->
+                            <Button Text="❌"
+                                    Grid.Column="2"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteTaskCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Red"
+                                    TextColor="White"/>
+                        </Grid>
+
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>
