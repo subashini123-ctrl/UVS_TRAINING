@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpanseApp.View.Expense"
+             Title="Expense">
+    <ScrollView>
+        <VerticalStackLayout Padding=" 20" Spacing=" 15">
+            <Label Text="Add Expense"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <Entry Placeholder="Enter Title"
+                   Text="{Binding  Title}"/>
+
+            <Entry Placeholder="Enter Amount"
+                   Keyboard="Numeric"
+                   Text="{Binding Amount}"/>
+            <DatePicker
+                Date="{Binding Date}"/>
+
+            <Button Text="Add Expense"
+                    Command="{Binding AddExpennseCommand}"
+                    BackgroundColor="Green"
+                    TextColor="White"/>
+            <CollectionView ItemsSource="{Binding Expenses}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" Padding="10" Margin="5">
+                            <VerticalStackLayout>
+
+                                <Label Text="{Binding Title}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Amount}"/>
+
+                                <Label Text="{Binding Category}"/>
+
+                                <Label Text="{Binding Data}"/>
+                                
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

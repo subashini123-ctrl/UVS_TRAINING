@@ -1,15 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
-using StudentList.View.StudentList;
-using StudentList.ViewModel.StudentList;
 
-namespace StudentList
+namespace ExpanseApp
 {
     public static class MauiProgram
     {
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-#pragma warning disable MCT001 // `.UseMauiCommunityToolkit()` Not Found on MauiAppBuilder
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -17,19 +14,10 @@ namespace StudentList
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-#pragma warning restore MCT001 // `.UseMauiCommunityToolkit()` Not Found on MauiAppBuilder
 
 #if DEBUG
-            builder.Logging.AddDebug();
-
-
+    		builder.Logging.AddDebug();
 #endif
-            
-
-            builder.Services.AddTransient<View.StudentList.StudentListPage>();
-            builder.Services.AddTransient<StudentViewModel>();
-
-            builder.Services.AddSingleton<StudentPopup>();
 
             return builder.Build();
         }
