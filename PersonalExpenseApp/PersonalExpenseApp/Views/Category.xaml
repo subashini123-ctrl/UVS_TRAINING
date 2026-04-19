@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:PersonalExpenseApp.Views"
+             x:Class="PersonalExpenseApp.Views.Category"
+             x:Name="PageRef"
+             BackgroundColor="LightBlue">
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        
+        <Label Text="🏷️ Categories"
+               FontSize="15"
+               FontAttributes="Bold"/>
+
+        
+        
+
+        <Entry Placeholder="Category Name"
+               Text="{Binding Name}"/>
+
+        
+        <Button Text="➕ Add Category"
+                Command="{Binding AddCommand}"/>
+
+        
+        <CollectionView ItemsSource="{Binding Categories}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnDefinitions="Auto,*,Auto">
+
+                        
+
+                        <Label Grid.Column="1"
+                               Text="{Binding Name}"
+                               FontSize="18"
+                               VerticalOptions="Center"/>
+
+                        <Button Grid.Column="2"
+                                Text="🗑️"
+                                Command="{Binding BindingContext.DeleteCommand, Source={x:Reference Name=PageRef}}"
+                                CommandParameter="{Binding .}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

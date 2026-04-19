@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PersonalExpenseApp.MainPage"
+             Title=" 🏠HomePage"
+             BackgroundColor="LightBlue"
+             
+             >
+    <ScrollView>
+        <VerticalStackLayout Padding="20"  Spacing="15">
+
+            <Entry Placeholder="Title" Text="{Binding Title}"
+                   PlaceholderColor="Black"/>
+            <Entry Placeholder="Amount" Keyboard="Numeric" Text="{Binding Amount}" />
+            <Label Text="Category" 
+                   FontSize="12"
+                   TextColor="Black"/>
+
+            <Picker ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding SelectedCategory}" />
+
+            <DatePicker Date="{Binding SelectedDate}" />
+
+            <Button Text="Add" Command="{Binding AddCommand}"
+                    BackgroundColor="Navy"/>
+
+            <Label Text="{Binding Total, StringFormat='Total: ₹{0:F2}'}" />
+
+            <CollectionView ItemsSource="{Binding Expenses}"
+                             SelectionMode="Single"
+                            >
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="5"
+                                Padding="10"
+                                >
+                            <Grid ColumnDefinitions="*,*,*,*"
+                                  VerticalOptions="Center">
+
+                                <Label Text="{Binding Title}"
+                                       FontAttributes="Bold"
+                                       HeightRequest="45"
+                                       WidthRequest="500"
+                                       />
+
+
+                                <Label Text="="
+                                       HorizontalOptions="End"
+                                       
+                                       />
+
+                                
+
+                                <Label Text="{Binding Amount, StringFormat='₹{}'}"
+                                       TextColor="Green"
+                                       Grid.Column="1"
+                                       FontAttributes="Bold"
+                                       
+                                       
+                                       />
+                                <Button Text="📝"
+                                        BackgroundColor="Orange"
+                                        HeightRequest="50"
+                                        WidthRequest="100"
+                                        Grid.Column="2"
+                                        HorizontalOptions="End"
+                                        
+                                        />
+                                <Button Text="🗑️"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="50"
+                                        WidthRequest="100"  
+                                        HorizontalOptions="End"
+                                        Grid.Column="4"
+                                        BackgroundColor="red"
+                                        FontFamily="Poppings" 
+                                        />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

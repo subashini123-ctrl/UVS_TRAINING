@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PersonalExpenseApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PersonalExpenseApp"
+    xmlns:views="clr-namespace:PersonalExpenseApp.Views"
+    Title="PersonalExpenseApp">
+    
+
+        <ShellContent
+           Title="🏠Home"
+          
+            
+            ContentTemplate="{DataTemplate local:MainPage }"
+        />
+    <ShellContent Title="📊Dashboard"
+                      ContentTemplate="{DataTemplate views:DashboardPage}" />
+    
+    <ShellContent
+        Title=" 🏷️Category"
+        ContentTemplate="{DataTemplate views:Category }"/>
+    <ShellContent
+         Title="⚙️Settings"
+         
+         ContentTemplate="{DataTemplate local:Settings}"/>
+
+
+</Shell>

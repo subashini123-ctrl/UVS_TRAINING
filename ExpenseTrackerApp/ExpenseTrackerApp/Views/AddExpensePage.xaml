@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpenseTrackerApp.Views.AddExpensePage"
+             Title="Add Transaction">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="12" Padding="16">
+
+            <Label Text="Type" FontAttributes="Bold"/>
+            <HorizontalStackLayout Spacing="12">
+                <RadioButton Content="Expense" IsChecked="True"
+                             CheckedChanged="OnTypeChanged"/>
+                <RadioButton Content="Income"
+                             CheckedChanged="OnTypeChanged"/>
+            </HorizontalStackLayout>
+
+            <Label Text="Title" FontAttributes="Bold"/>
+            <Entry Placeholder="e.g. Zomato Order"
+                   Text="{Binding Title}" BackgroundColor="White"/>
+
+            <Label Text="Amount (₹)" FontAttributes="Bold"/>
+            <Entry Placeholder="0.00" Keyboard="Numeric"
+                   Text="{Binding AmountText}" BackgroundColor="White"/>
+
+            <Label Text="Category" FontAttributes="Bold"/>
+            <Picker ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding SelectedCategory}"
+                    BackgroundColor="White"/>
+
+            <Label Text="Date" FontAttributes="Bold"/>
+            <DatePicker Date="{Binding Date}" BackgroundColor="White"/>
+
+            <Label Text="Note (Optional)" FontAttributes="Bold"/>
+            <Editor Placeholder="Add a note..." Text="{Binding Note}"
+                    HeightRequest="80" BackgroundColor="White"/>
+
+            <Button Text="Save Transaction"
+                    Command="{Binding SaveCommand}"
+                    BackgroundColor="#4f46e5" TextColor="White"
+                    CornerRadius="12" Margin="0,8,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

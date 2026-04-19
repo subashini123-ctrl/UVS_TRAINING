@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ExpenseTracker.ViewModels"
+             x:Class="ExpenseTrackerApp.MainPage"
+             Title="Expense Tracker">
+
+    <Shell.TitleView>
+        <Label Text="💰 Expense Tracker"
+               FontSize="18" FontAttributes="Bold"
+               VerticalOptions="Center" TextColor="White"/>
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Balance Card -->
+            <Border BackgroundColor="#4f46e5" Margin="16,16,16,8"
+                   Padding="20" >
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Total Balance" TextColor="White" Opacity="0.8" FontSize="13"/>
+                    <Label Text="{Binding TotalBalance, StringFormat='₹{0:N2}'}"
+                           TextColor="White" FontSize="28" FontAttributes="Bold"/>
+                    <Grid ColumnDefinitions="*,*" Margin="0,8,0,0">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="Income" TextColor="White" Opacity="0.7" FontSize="11"/>
+                            <Label Text="{Binding TotalIncome, StringFormat='₹{0:N2}'}"
+                                   TextColor="#6ee7b7" FontSize="16" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Expenses" TextColor="White" Opacity="0.7" FontSize="11"/>
+                            <Label Text="{Binding TotalExpenses, StringFormat='₹{0:N2}'}"
+                                   TextColor="#fca5a5" FontSize="16" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Add Button -->
+            <Button Text="+ Add Transaction"
+                    Command="{Binding GoToAddExpenseCommand}"
+                    BackgroundColor="#4f46e5" TextColor="White"
+                    Margin="16,4,16,12" CornerRadius="12" FontSize="14"/>
+
+            <!-- Transactions List -->
+            <Label Text="Recent Transactions" FontAttributes="Bold"
+                   FontSize="15" Margin="16,0,16,8"/>
+
+            <CollectionView ItemsSource="{Binding Expenses}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate >
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete" BackgroundColor="Red"
+                                               Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DeleteExpenseCommand}"
+                                               CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Border Margin="16,4" Padding="14" 
+                                   BackgroundColor="White">
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <Border Grid.Column="0" BackgroundColor="#ede9fe"
+                                           Padding="10" WidthRequest="42" HeightRequest="42">
+                                        <Label Text="{Binding Category}"
+                                               FontSize="10" HorizontalOptions="Center"
+                                               VerticalOptions="Center" TextColor="#5b21b6"/>
+                                    </Border>
+                                    <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" Spacing="2">
+                                        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="14"/>
+                                        <Label Text="{Binding Date, StringFormat='{0:dd MMM yyyy}'}"
+                                               FontSize="11" TextColor="Gray"/>
+                                    </VerticalStackLayout>
+                                    <Label Grid.Column="2"
+                                           Text="{Binding AmountDisplay}"
+                                           TextColor="{Binding AmountColor}"
+                                           FontAttributes="Bold" FontSize="15"
+                                           VerticalOptions="Center"/>
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
